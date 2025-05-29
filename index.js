@@ -79,7 +79,7 @@ class Triangle extends Shape {
     }
 };
 
-function createShape(line) {
+export function createShape(line) {
     const arrayOfWords = line.split(" ");
     const shapeType = arrayOfWords[0];
 
@@ -136,7 +136,7 @@ function calcResults() {
     }
     document.getElementById("output").innerText = output.join("\n");
 };
-export { Square };
+export { Square, Shape };
 
 // function calcParams(type, calcPerimeter, calcArea) {
 //     return {

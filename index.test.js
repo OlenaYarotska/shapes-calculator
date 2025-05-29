@@ -1,4 +1,4 @@
-import { Square } from './index.js';
+import { Square, createShape, Shape } from './index.js';
 
 test('testSquare', () => {
     const square = new Square(2);
@@ -8,4 +8,20 @@ test('testSquare', () => {
 test('testArea', () => {
     const square = new Square(2);
     expect(square.calcArea()).toBe(4);
+});
+
+test('testCreateShape', () => {
+    const shape = createShape("Square TopRight 1 1 Side 1");
+    expect(shape.type).toBe("Square");
+});
+
+test('testToString', () => {
+    const square = new Square(2);
+    expect(square.toString()).toBe("Square Perimeter: 8 Area: 4");
+});
+
+test('testCreateShapeInstance', () => {
+    const shape = createShape("Square TopRight 1 1 Side 1");
+    expect(shape).toBeInstanceOf(Square);
+    expect(shape).toBeInstanceOf(Shape);
 });

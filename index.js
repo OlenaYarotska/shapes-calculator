@@ -136,7 +136,7 @@ function calcResults() {
     }
     document.getElementById("output").innerText = output.join("\n");
 };
-
+export { Square };
 
 // function calcParams(type, calcPerimeter, calcArea) {
 //     return {
@@ -238,7 +238,5 @@ function calcResults() {
 //     }
 //     document.getElementById("output").innerText = output;
 // };
-
-
 
 

@@ -83,14 +83,9 @@ export function createShape(line) {
     const arrayOfWords = line.split(" ");
     const shapeType = arrayOfWords[0];
 
-    const isNumber = index => {
-        const n = parseFloat(arrayOfWords[index]);
-        return n;
-    }
     switch (shapeType) {
         case "Square":
-            const side = isNumber(5);
-            return new Square(side);
+            return createSquare(line);
         case "Rectangle":
             const topRightX = isNumber(2);
             const topRightY = isNumber(3);
@@ -100,8 +95,7 @@ export function createShape(line) {
             const height = Math.abs(topRightY - bottomLeftY);
             return new Rectangle(width, height);
         case "Circle":
-            const radius = isNumber(5);
-            return new Circle(radius);
+            return createCircle(line);
         case "Triangle":
             const x1 = isNumber(2);
             const y1 = isNumber(3);
@@ -114,6 +108,20 @@ export function createShape(line) {
             return null;
     };
 }
+const isNumber = (index, line) => {
+    const arrayOfWords = line.split(" ");
+    const n = parseFloat(arrayOfWords[index]);
+    return n;
+}
+function createSquare(line) {
+    const side = isNumber(5, line);
+    return new Square(side);
+};
+function createCircle(line) {
+    const radius = isNumber(5, line);
+    return new Circle(radius);
+};
+
 
 function calcResults() {
     const input = document.getElementById("input").value;
@@ -136,7 +144,7 @@ function calcResults() {
     }
     document.getElementById("output").innerText = output.join("\n");
 };
-export { Square, Shape };
+export { Square, Shape, Circle };
 
 // function calcParams(type, calcPerimeter, calcArea) {
 //     return {

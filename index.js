@@ -87,23 +87,11 @@ export function createShape(line) {
         case "Square":
             return createSquare(line);
         case "Rectangle":
-            const topRightX = isNumber(2);
-            const topRightY = isNumber(3);
-            const bottomLeftX = isNumber(5);
-            const bottomLeftY = isNumber(6);
-            const width = Math.abs(topRightX - bottomLeftX);
-            const height = Math.abs(topRightY - bottomLeftY);
-            return new Rectangle(width, height);
+           return createRectangle(line)
         case "Circle":
             return createCircle(line);
         case "Triangle":
-            const x1 = isNumber(2);
-            const y1 = isNumber(3);
-            const x2 = isNumber(5);
-            const y2 = isNumber(6);
-            const x3 = isNumber(8);
-            const y3 = isNumber(9);
-            return new Triangle(x1, y1, x2, y2, x3, y3);
+           return createTriangle(line)
         default:
             return null;
     };
@@ -121,9 +109,26 @@ function createCircle(line) {
     const radius = isNumber(5, line);
     return new Circle(radius);
 };
+function createRectangle(line) {
+    const topRightX = isNumber(2, line);
+    const topRightY = isNumber(3, line);
+    const bottomLeftX = isNumber(5, line);
+    const bottomLeftY = isNumber(6, line);
+    const width = Math.abs(topRightX - bottomLeftX);
+    const height = Math.abs(topRightY - bottomLeftY);
+    return new Rectangle(width, height);
+};
+function createTriangle(line) {
+    const x1 = isNumber(2, line);
+    const y1 = isNumber(3, line);
+    const x2 = isNumber(5, line);
+    const y2 = isNumber(6, line);
+    const x3 = isNumber(8, line);
+    const y3 = isNumber(9, line);
+    return new Triangle(x1, y1, x2, y2, x3, y3);
+};
 
-
-function calcResults() {
+export function calcResults() {
     const input = document.getElementById("input").value;
     const lines = input.split("\n");
     let output = [];
@@ -144,6 +149,13 @@ function calcResults() {
     }
     document.getElementById("output").innerText = output.join("\n");
 };
+
+document.addEventListener("DOMContentLoaded", () => {
+    const button = document.getElementById("calcButton");
+    if (button) {
+        button.addEventListener("click", calcResults)
+    }
+});
 export { Square, Shape, Circle };
 
 // function calcParams(type, calcPerimeter, calcArea) {
